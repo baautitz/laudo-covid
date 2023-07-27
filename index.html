@@ -426,7 +426,7 @@
             const file = new Blob([content], { type: 'text/html' })
 
             link.href = URL.createObjectURL(file)
-            link.download = ($("#nome")[0].value) ? `${$("#nome")[0].value.replaceAll(" ", "_")}.html` : "LAUDO.html"
+            link.download = ($("#nome")[0].value) ? `${$("#nome")[0].value.replaceAll(" ", "_")}-${Date.now()}.html` : `LAUDO-${Date.now()}.html`
             window.print()
             link.click()
 
