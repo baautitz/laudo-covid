@@ -455,7 +455,7 @@
                 savedURL.searchParams.append(input.name, input.value)
             }
 
-            const content = "<" + 'script' + ">" + `window.location.href = "${savedURL}"` + "<" + "/script>"
+            const content = "<" + "script>" + `window.location.href = "${savedURL}"` + "<" + "/script>"
             const file = new Blob([content], { type: 'text/html' })
 
             window.print()
