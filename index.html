@@ -48,15 +48,13 @@
 
         input[type=text] {
             padding: 12px 5px;
-            width: 225px;
             border: black solid 1px;
             border-radius: 5px;
             height: 20px;
         }
 
-        #formulario {
-            display: flex;
-            flex-direction: column;
+        ::placeholder {
+            color: black;
         }
 
         #cabecalho {
@@ -72,6 +70,11 @@
 
         #cabecalho>#farmacia>span {
             font-size: small;
+        }
+
+        #formulario {
+            display: flex;
+            flex-direction: column;
         }
 
         .form-box {
@@ -91,20 +94,20 @@
             align-items: center;
         }
 
-        .nome-input {
-            display: grid;
-            grid-template-columns: max-content auto;
-            margin-bottom: 5px;
-            column-gap: 13px;
-        }
-
-        .nome-input>input {
-            width: auto;
-        }
-
         .form-input {
             display: flex;
-            justify-content: space-between;
+        }
+
+        .form-input>label {
+            width: 150px;
+        }
+
+        .form-input>input {
+            flex: auto;
+        }
+
+        .full-size {
+            grid-column: span 2;
         }
 
         #assinatura {
@@ -125,8 +128,26 @@
             border-top: solid 1px black;
         }
 
-        @media print {
+        #save {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+        #save > button {
+            background-color: #E30613;
+            padding: 5px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            border: #E30613 solid 2px;
+        }
+
+        #save > button:hover {
+            background-color: #e30615d3
+        }
+
+        @media print {
             body,
             page {
                 margin: 0;
@@ -142,217 +163,214 @@
 </head>
 
 <body>
-
-    <form action="#">
-        <page>
-            <div id="cabecalho">
-                <img src="./assets/pj-logo.png" alt="">
-                <div id="farmacia">
-                    <span>Farmácia Preço Justo </span>
-                    <span>CNPJ: 07.790.043/0001-67</span>
-                    <span>Avenida Paraná, 1162</span>
-                    <span>Vila Maracanã, Foz do Iguaçu - PR</span>
-                    <span>Telefone: (45) 3523-1610</span>
-                </div>
+    <page>
+        <div id="cabecalho">
+            <img src="./assets/pj-logo.png" alt="">
+            <div id="farmacia">
+                <span>Farmácia Preço Justo </span>
+                <span>CNPJ: 07.790.043/0001-67</span>
+                <span>Avenida Paraná, 1162</span>
+                <span>Vila Maracanã, Foz do Iguaçu - PR</span>
+                <span>Telefone: (45) 3523-1610</span>
             </div>
+        </div>
 
-            <main>
-                <div id="formulario">
-                    <div id="paciente" class="form-box">
-                        <h2>DADOS DO PACIENTE</h2>
+        <main>
+            <div id="formulario">
+                <div id="paciente" class="form-box">
+                    <h2>DADOS DO PACIENTE</h2>
 
-                        <div class="nome-input">
-                            <label for="nome">Nome do paciente:</label>
+                    <div class="input-wrapper">
+                        <div class="form-input full-size">
+                            <label for="nome">Nome:</label>
                             <input type="text" name="nome" id="nome">
                         </div>
 
-                        <div class="input-wrapper">
-                            <div class="form-input">
-                                <label for="nascimento">Data de nascimento:</label>
-                                <input type="text" name="nascimento" id="nascimento" class="data">
-                            </div>
-                            <div class="form-input">
-                                <label for="cpf">CPF:</label>
-                                <input type="text" name="cpf" id="cpf">
-                            </div>
-                            <div class="form-input">
-                                <label for="rg">RG:</label>
-                                <input type="text" name="rg" id="rg">
-                            </div>
-                            <div class="form-input">
-                                <label for="telefone">Telefone:</label>
-                                <input type="text" name="telefone" id="telefone">
-                            </div>
+                        <div class="form-input">
+                            <label for="nascimento">Data de nascimento:</label>
+                            <input type="text" name="nascimento" id="nascimento" class="data">
                         </div>
-                    </div>
-
-                    <div id="endereco" class="form-box">
-                        <h2>ENDEREÇO</h2>
-
-                        <div class="input-wrapper">
-                            <div class="form-input">
-                                <label for="cep">CEP:</label>
-                                <input type="text" name="cep" id="cep">
-                            </div>
-                            <div class="form-input">
-                                <label for="cidade">Cidade:</label>
-                                <input type="text" name="cidade" id="cidade">
-                            </div>
-                            <div class="form-input">
-                                <label for="logradouro">Logradouro:</label>
-                                <input type="text" name="logradouro" id="logradouro">
-                            </div>
-                            <div class="form-input">
-                                <label for="numero-logradouro">Número:</label>
-                                <input type="text" name="numero-logradouro" id="numero-logradouro">
-                            </div>
-                            <div class="form-input">
-                                <label for="bairro">Bairro:</label>
-                                <input type="text" name="bairro" id="bairro">
-                            </div>
-
+                        <div class="form-input">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" name="cpf" id="cpf">
                         </div>
-                    </div>
-
-                    <div id="exame" class="form-box">
-                        <h2>DADOS DO EXAME</h2>
-
-                        <div class="input-wrapper">
-                            <div class="form-input">
-                                <label for="inicio-sintoma">Início dos sintomas:</label>
-                                <input type="text" name="inicio-sintoma" id="inicio-sintoma" class="data">
-                            </div>
-                            <div class="form-input">
-                                <label for="data-realizada">Data do exame:</label>
-                                <input type="text" name="data-realizada" id="data-realizada" class="data">
-                            </div>
-                            <div class="form-input">
-                                <label for="horario-realizado">Horáirio realizado:</label>
-                                <input type="text" name="horario-realizado" id="horario-realizado">
-                            </div>
-                            <div class="form-input">
-                                <label for="nome-teste">Nome do teste:</label>
-                                <input type="text" name="nome-teste" id="nome-teste">
-                            </div>
-                            <div class="form-input">
-                                <label for="lote-teste">Lote do teste:</label>
-                                <input type="text" name="lote-teste" id="lote-teste">
-                            </div>
-                            <div class="form-input">
-                                <label for="validade-teste">Validade do teste:</label>
-                                <input type="text" name="validade-teste" id="validade-teste" class="data">
-                            </div>
+                        <div class="form-input">
+                            <label for="rg">RG:</label>
+                            <input type="text" name="rg" id="rg">
                         </div>
-                    </div>
-
-                    <div id="resultado" class="form-box">
-                        <h2>RESULTADO DO EXAME</h2>
-
-                        <div class="input-wrapper">
-                            <div class="form-input-radio">
-                                <input type="radio" name="resultado-exame" id="resultado-positivo-iggigm-sangue"
-                                    value="resultado-positivo-iggigm-sangue">
-                                <label for="resultado-positivo-iggigm-sangue">Positivo - IgM/IgG (Sangue)</label>
-                            </div>
-                            <div class="form-input-radio">
-                                <input type="radio" name="resultado-exame" id="resultado-negativo-iggigm-sangue"
-                                    value="resultado-negativo-iggigm-sangue">
-                                <label for="resultado-negativo-iggigm-sangue">Negativo - IgM/IgG (Sangue)</label>
-                            </div>
-                            <div class="form-input-radio">
-                                <input type="radio" name="resultado-exame"
-                                    id="resultado-positivo-igg-negativo-igm-sangue"
-                                    value="resultado-positivo-igg-negativo-igm-sangue">
-                                <label for="resultado-positivo-igg-negativo-igm-sangue">Positivo - IgG / Negativo - IgM
-                                    (Sangue)</label>
-                            </div>
-                            <div class="form-input-radio">
-                                <input type="radio" name="resultado-exame"
-                                    id="resultado-negativo-igg-positivo-igm-sangue"
-                                    value="resultado-negativo-igg-positivo-igm-sangue">
-                                <label for="resultado-negativo-igg-positivo-igm-sangue">Negativo - IgG / Positivo - IgM
-                                    (Sangue)</label>
-                            </div>
-                            <div class="form-input-radio">
-                                <input type="radio" name="resultado-exame" id="resultado-positivo-swab"
-                                    value="resultado-positivo-swab">
-                                <label for="resultado-positivo-swab">Positivo - Teste rápido nasal (Swab)</label>
-                            </div>
-                            <div class="form-input-radio">
-                                <input type="radio" name="resultado-exame" id="resultado-negativo-swab"
-                                    value="resultado-negativo-swab">
-                                <label for="resultado-negativo-swab">Negativo - Teste rápido nasal (Swab)</label>
-                            </div>
+                        <div class="form-input">
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" name="telefone" id="telefone">
                         </div>
                     </div>
                 </div>
-                <div id="informacoes">
-                    <h2>INFORMAÇÕES</h2>
-                    <p>Método: Teste rápido</p>
 
-                    <p>
-                        Valor de referência: negativo/não reagente
-                    </p>
+                <div id="endereco" class="form-box">
+                    <h2>ENDEREÇO</h2>
 
-                    <p>
-                        1. O teste rápido 2019-nCoV IgG/IgM (Sangue Total/ Soro/Plasma) é apenas para uso em diagnóstico
-                        in
-                        vitro.
-                        Este teste deve ser usado para a detecção de anticorpos IgG e IgM para 2019-nCoV em amostras de
-                        sangue
-                        total, soro ou plasma. Nem o valor quantitativo nem a taxa de aumento da concentração de
-                        anticorpos
-                        IgG
-                        ou
-                        IgM para 2019-nCoV podem ser determinados por este teste qualitativo.
-                    </p>
+                    <div class="input-wrapper">
+                        <div class="form-input full-size">
+                            <label for="logradouro">Logradouro:</label>
+                            <input type="text" name="logradouro" id="logradouro">
+                        </div>
+                        <div class="form-input">
+                            <label for="numero-logradouro">Número:</label>
+                            <input type="text" name="numero-logradouro" id="numero-logradouro">
+                        </div>
+                        <div class="form-input">
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" name="bairro" id="bairro">
+                        </div>
+                        <div class="form-input">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" name="cidade" id="cidade">
+                        </div>
+                        <div class="form-input">
+                            <label for="cep">CEP:</label>
+                            <input type="text" name="cep" id="cep">
+                        </div>
 
-                    <p>
-                        2. O teste rápido 2019-nCoV IgG/IgM (Sangue Total/ Soro/Plasma) indicará apenas a presença de
-                        anticorpos
-                        IgG
-                        e IgM para 2019- nCoV na amostra e não deve ser usada como o único critério para o diagnóstico
-                        de
-                        infecções
-                        por 2019-nCoV.
-                    </p>
-
-                    <p>
-                        3. Como em todos os testes de diagnóstico, todos os resultados devem ser considerados com outras
-                        informações
-                        clínicas disponíveis para o médico.
-                    </p>
-
-                    <p>
-                        4. Se o resultado do teste for negativo e os sintomas clínicos persistirem, sugerimos testes
-                        adicionais
-                        de
-                        acompanhamento usando outros métodos clínicos. Um resultado negativo a qualquer momento não
-                        exclui a
-                        possibilidade de infecção por 2019-nCoV.
-                    </p>
-
-                    <p>
-                        5. O Teste mostrará resultados negativos nas seguintes condições: O título dos novos anticorpos
-                        para
-                        o
-                        coronavírus na amostra é inferior ao limite mínimo de detecção do teste ou o novo anticorpo para
-                        o
-                        coronavírus
-                        não apareceu no momento da colheita da amostra (Fase assintomática).
-                    </p>
-
+                    </div>
                 </div>
-            </main>
 
-            <div id="assinatura">
-                <hr>
-                <span>Assinatura e carimbo do farmacêutico</span>
+                <div id="exame" class="form-box">
+                    <h2>DADOS DO EXAME</h2>
+
+                    <div class="input-wrapper">
+                        <div class="form-input">
+                            <label for="inicio-sintoma">Início dos sintomas:</label>
+                            <input type="text" name="inicio-sintoma" id="inicio-sintoma" class="data" placeholder="SEM SINTOMAS">
+                        </div>
+                        <div class="form-input">
+                            <label for="data-realizada">Data do exame:</label>
+                            <input type="text" name="data-realizada" id="data-realizada" class="data">
+                        </div>
+                        <div class="form-input">
+                            <label for="horario-realizado">Horáirio realizado:</label>
+                            <input type="text" name="horario-realizado" id="horario-realizado">
+                        </div>
+                        <div class="form-input">
+                            <label for="nome-teste">Nome do teste:</label>
+                            <input type="text" name="nome-teste" id="nome-teste">
+                        </div>
+                        <div class="form-input">
+                            <label for="lote-teste">Lote do teste:</label>
+                            <input type="text" name="lote-teste" id="lote-teste">
+                        </div>
+                        <div class="form-input">
+                            <label for="validade-teste">Validade do teste:</label>
+                            <input type="text" name="validade-teste" id="validade-teste" class="data">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultado" class="form-box">
+                    <h2>RESULTADO DO EXAME</h2>
+
+                    <div class="input-wrapper">
+                        <div class="form-input-radio">
+                            <input type="radio" name="resultado-exame" id="resultado-positivo-iggigm-sangue"
+                                value="resultado-positivo-iggigm-sangue">
+                            <label for="resultado-positivo-iggigm-sangue">Positivo - IgM/IgG (Sangue)</label>
+                        </div>
+                        <div class="form-input-radio">
+                            <input type="radio" name="resultado-exame" id="resultado-negativo-iggigm-sangue"
+                                value="resultado-negativo-iggigm-sangue">
+                            <label for="resultado-negativo-iggigm-sangue">Negativo - IgM/IgG (Sangue)</label>
+                        </div>
+                        <div class="form-input-radio">
+                            <input type="radio" name="resultado-exame" id="resultado-positivo-igg-negativo-igm-sangue"
+                                value="resultado-positivo-igg-negativo-igm-sangue">
+                            <label for="resultado-positivo-igg-negativo-igm-sangue">Positivo - IgG / Negativo - IgM
+                                (Sangue)</label>
+                        </div>
+                        <div class="form-input-radio">
+                            <input type="radio" name="resultado-exame" id="resultado-negativo-igg-positivo-igm-sangue"
+                                value="resultado-negativo-igg-positivo-igm-sangue">
+                            <label for="resultado-negativo-igg-positivo-igm-sangue">Negativo - IgG / Positivo - IgM
+                                (Sangue)</label>
+                        </div>
+                        <div class="form-input-radio">
+                            <input type="radio" name="resultado-exame" id="resultado-positivo-swab"
+                                value="resultado-positivo-swab">
+                            <label for="resultado-positivo-swab">Positivo - Teste rápido nasal (Swab)</label>
+                        </div>
+                        <div class="form-input-radio">
+                            <input type="radio" name="resultado-exame" id="resultado-negativo-swab"
+                                value="resultado-negativo-swab">
+                            <label for="resultado-negativo-swab">Negativo - Teste rápido nasal (Swab)</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </page>
+            <div id="informacoes">
+                <h2>INFORMAÇÕES</h2>
+                <p>Método: Teste rápido</p>
 
-        <button type="submit" id="save">Salvar</button>
-    </form>
+                <p>
+                    Valor de referência: negativo/não reagente
+                </p>
+
+                <p>
+                    1. O teste rápido 2019-nCoV IgG/IgM (Sangue Total/ Soro/Plasma) é apenas para uso em diagnóstico
+                    in
+                    vitro.
+                    Este teste deve ser usado para a detecção de anticorpos IgG e IgM para 2019-nCoV em amostras de
+                    sangue
+                    total, soro ou plasma. Nem o valor quantitativo nem a taxa de aumento da concentração de
+                    anticorpos
+                    IgG
+                    ou
+                    IgM para 2019-nCoV podem ser determinados por este teste qualitativo.
+                </p>
+
+                <p>
+                    2. O teste rápido 2019-nCoV IgG/IgM (Sangue Total/ Soro/Plasma) indicará apenas a presença de
+                    anticorpos
+                    IgG
+                    e IgM para 2019- nCoV na amostra e não deve ser usada como o único critério para o diagnóstico
+                    de
+                    infecções
+                    por 2019-nCoV.
+                </p>
+
+                <p>
+                    3. Como em todos os testes de diagnóstico, todos os resultados devem ser considerados com outras
+                    informações
+                    clínicas disponíveis para o médico.
+                </p>
+
+                <p>
+                    4. Se o resultado do teste for negativo e os sintomas clínicos persistirem, sugerimos testes
+                    adicionais
+                    de
+                    acompanhamento usando outros métodos clínicos. Um resultado negativo a qualquer momento não
+                    exclui a
+                    possibilidade de infecção por 2019-nCoV.
+                </p>
+
+                <p>
+                    5. O Teste mostrará resultados negativos nas seguintes condições: O título dos novos anticorpos
+                    para
+                    o
+                    coronavírus na amostra é inferior ao limite mínimo de detecção do teste ou o novo anticorpo para
+                    o
+                    coronavírus
+                    não apareceu no momento da colheita da amostra (Fase assintomática).
+                </p>
+
+            </div>
+        </main>
+
+        <div id="assinatura">
+            <hr>
+            <span>Assinatura e carimbo do farmacêutico</span>
+        </div>
+    </page>
+
+    <div id="save">
+        <button type="button" id="save-button">Salvar</button>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
@@ -362,24 +380,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        const url = new URL(window.location.href)
-
-        if (url.searchParams.get("nome"))
-            $("#nome").val(url.searchParams.get("nome").toUpperCase())
-
-        for (let input of $(".form-input > input")) {
-            let id = input.id
-
-            if (url.searchParams.get(id))
-                $(`#${id}`).val(url.searchParams.get(id).toUpperCase())
-        }
-
-
-        if (url.searchParams.get("resultado-exame"))
-            $(`#${url.searchParams.get("resultado-exame").toLocaleLowerCase()}`).prop("checked", true)
-
-
-        $("input").on("input", (e) => e.currentTarget.value = e.currentTarget.value.toUpperCase())
         const telefoneOptions = {
             onKeyPress: (telefone, e, field, options) => {
                 const masks = ["(00) 0000-00000", "(00) 00000-00000", "+0#"]
@@ -398,7 +398,31 @@
         $("#telefone").mask("0#", telefoneOptions)
         $("#cep").mask("00000-000")
         $("#horario-realizado").mask("00:00")
+    </script>
 
+    <script>
+        const url = new URL(window.location.href)
+
+        if (url.searchParams.get("nome"))
+            $("#nome").val(url.searchParams.get("nome").toUpperCase())
+
+        for (let input of $(".form-input > input")) {
+            let id = input.id
+
+            if (url.searchParams.get(id))
+                $(`#${id}`).val(url.searchParams.get(id).toUpperCase())
+        }
+
+
+        if (url.searchParams.get("resultado-exame"))
+            $(`#${url.searchParams.get("resultado-exame").toLocaleLowerCase()}`).prop("checked", true)
+    </script>
+
+    <script>
+        $("input").on("input", (e) => e.currentTarget.value = e.currentTarget.value.toUpperCase())
+    </script>
+
+    <script>
         $("#cep").on("input", async (e) => {
             if (e.currentTarget.value.length == 9) {
                 const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${e.currentTarget.value.replace("-", "")}`)
@@ -412,25 +436,33 @@
                 $("#numero-logradouro").focus()
             }
         })
+    </script>
 
-        $("#save").on("click", (e) => {
+    <script>
+        $("#save-button").on("click", (e) => {
             const link = document.createElement("a");
 
-            const savedURL = new URL(window.location.href)
+            const userUrl = new URL(window.location.href)
+            const savedURL = new URL(userUrl.origin + "/")
+
+
             for (let input of $("input")) {
-                let name = input.name
-                savedURL.searchParams.append(name, input.value)
+                if (input.type == "radio" && !input.checked) continue;
+                console.log(input.value)
+                savedURL.searchParams.append(input.name, input.value)
             }
 
             const content = "<" + 'script' + ">" + `window.location.href = "${savedURL}"` + "<" + "/script>"
             const file = new Blob([content], { type: 'text/html' })
 
+            window.print()
+
             link.href = URL.createObjectURL(file)
             link.download = ($("#nome")[0].value) ? `${$("#nome")[0].value.replaceAll(" ", "_")}-${Date.now()}.html` : `LAUDO-${Date.now()}.html`
-            window.print()
             link.click()
 
             URL.revokeObjectURL(link.href)
+            window.location.href = savedURL
         })
     </script>
 
