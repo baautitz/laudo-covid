@@ -426,7 +426,10 @@
         $("#cep").on("input", async (e) => {
             if (e.currentTarget.value.length == 9) {
                 const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${e.currentTarget.value.replace("-", "")}`)
-                if (response.status != 200) return;
+                if (response.status != 200) {
+                    alert("CEP não encontrado!")
+                    return;
+                }
                 if (!confirm("CEP encontrado, deseja preencher endereço automaticamente?")) return;
 
                 const { city, neighborhood, street, state } = await response.json()
