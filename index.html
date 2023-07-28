@@ -443,7 +443,7 @@
             const link = document.createElement("a");
 
             const userUrl = new URL(window.location.href)
-            const savedURL = new URL(userUrl.origin + "/")
+            const savedURL = new URL(userUrl.origin + userUrl.pathname)
 
 
             for (let input of $("input")) {
