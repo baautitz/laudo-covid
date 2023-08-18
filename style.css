@@ -45,6 +45,10 @@ input[type=text] {
     height: 20px;
 }
 
+img {
+    width: 220px;
+}
+
 ::placeholder {
     color: black;
 }
