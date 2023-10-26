@@ -212,10 +212,11 @@
 			const telefoneOptions = {
 				onKeyPress: (telefone, e, field, options) => {
 					const masks = ["(00) 0000-00000", "(00) 00000-00000", "+0#"];
-					const regex = /[\(\)\- ]*/g;
+					const regex = /[0-9]*/g;
+					const telefoneLimpo = telefone.match(regex).join("");
 					const mask = () => {
-						if (telefone.replaceAll(regex, "").length < 11) return masks[0];
-						else if (telefone.replaceAll(regex, "").length < 12) return masks[1];
+						if (telefoneLimpo.length < 11) return masks[0];
+						else if (telefoneLimpo.length < 12) return masks[1];
 						else return masks[2];
 					};
 					$("#telefone").mask(mask(), telefoneOptions);
