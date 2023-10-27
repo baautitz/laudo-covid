@@ -77,6 +77,18 @@ img {
     margin-bottom: 5px;
 }
 
+.dados-paciente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dados-paciente>select{
+    border: black solid 1px;
+    border-radius: 5px;
+    margin-bottom: 13.280px;
+}
+
 .input-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -153,6 +165,10 @@ img {
     }
 
     #save {
+        display: none;
+    }
+
+    .dados-paciente>select {
         display: none;
     }
 }
