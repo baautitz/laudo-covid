@@ -34,31 +34,32 @@
 						</div>
 
 						<div class="input-wrapper">
-							<div class="form-input full-size">
+							<div class="form-input full-size paciente-nativo paciente-estrangeiro">
 								<label for="nome">Nome do paciente:</label>
 								<input type="text" name="nome" id="nome" />
 							</div>
 
-							<div class="form-input">
+							<div class="form-input paciente-nativo paciente-estrangeiro">
 								<label for="nascimento">Data de nascimento:</label>
 								<input type="text" name="nascimento" id="nascimento" class="data" />
 							</div>
 
-							<!-- <div class="form-input">
+							<div class="form-input paciente-nativo">
 								<label for="cpf">CPF:</label>
 								<input type="text" name="cpf" id="cpf" />
 							</div>
-							<div class="form-input">
+							<div class="form-input paciente-nativo">
 								<label for="rg">RG:</label>
 								<input type="text" name="rg" id="rg" />
-							</div> -->
-							<div class="form-input">
+							</div>
+
+							<div class="form-input paciente-nativo paciente-estrangeiro">
 								<label for="telefone">Telefone:</label>
 								<input type="text" name="telefone" id="telefone" />
 							</div>
-							<div class="form-input">
+							<div class="form-input paciente-estrangeiro">
 								<label for="documento">Documento:</label>
-								<input type="text" name="documento" id="documento" class="data" />
+								<input type="text" name="documento" id="documento" />
 							</div>
 						</div>
 					</div>
@@ -67,38 +68,38 @@
 						<h2>ENDEREÇO</h2>
 
 						<div class="input-wrapper">
-							<div class="form-input full-size">
+							<div class="form-input full-size paciente-estrangeiro">
 								<label for="pais-origem">País de origem:</label>
 								<input type="text" name="pais-origem" id="pais-origem" />
 							</div>
 
-							<div class="form-input">
+							<div class="form-input paciente-estrangeiro">
 								<label for="provincia">Província:</label>
 								<input type="text" name="estado" id="estado" />
 							</div>
 
-							<!-- <div class="form-input full-size">
+							<div class="form-input full-size paciente-nativo">
 								<label for="logradouro">Logradouro:</label>
 								<input type="text" name="logradouro" id="logradouro" />
 							</div>
-							<div class="form-input">
+							<div class="form-input paciente-nativo">
 								<label for="numero-logradouro">Número:</label>
 								<input type="text" name="numero-logradouro" id="numero-logradouro" />
 							</div>
-							<div class="form-input">
+							<div class="form-input paciente-nativo">
 								<label for="bairro">Bairro:</label>
 								<input type="text" name="bairro" id="bairro" />
-							</div> -->
+							</div>
 
-							<div class="form-input">
+							<div class="form-input paciente-nativo paciente-estrangeiro">
 								<label for="cidade">Cidade:</label>
 								<input type="text" name="cidade" id="cidade" />
 							</div>
 
-							<!-- <div class="form-input">
+							<div class="form-input paciente-nativo">
 								<label for="cep">CEP:</label>
 								<input type="text" name="cep" id="cep" />
-							</div> -->
+							</div>
 						</div>
 					</div>
 
@@ -237,19 +238,19 @@
 			const telefoneOptions = {
 				onKeyPress: (telefone, e, field, options) => {
 					if ($("#tipo-paciente").val() == "estrangeiro") {
-						$("#telefone").mask("#", telefoneOptions);
+						$("#telefone").mask("+0#", telefoneOptions);
 						return;
 					}
 
 					const masks = ["(00) 0000-00000", "(00) 00000-00000", "+0#"];
 					const regex = /[0-9]*/g;
 					const telefoneLimpo = telefone.match(regex).join("");
-					const mask = () => {
+					const loadMask = () => {
 						if (telefoneLimpo.length < 11) return masks[0];
 						else if (telefoneLimpo.length < 12) return masks[1];
 						else return masks[2];
 					};
-					$("#telefone").mask(mask(), telefoneOptions);
+					$("#telefone").mask(loadMask(), telefoneOptions);
 				},
 			};
 
@@ -261,9 +262,47 @@
 		</script>
 
 		<script>
+			function loadInputs() {
+				if ($("#tipo-paciente").val() == "nativo") {
+					for (element of $(".paciente-nativo")) {
+						if (!element.classList.contains("disabled")) continue;
+
+						element.classList.remove("disabled");
+					}
+
+					for (element of $(".paciente-estrangeiro")) {
+						if (element.classList.contains("paciente-nativo")) continue;
+						if (element.classList.contains("disabled")) continue;
+
+						element.classList.add("disabled");
+					}
+				} else if ($("#tipo-paciente").val() == "estrangeiro") {
+					for (element of $(".paciente-estrangeiro")) {
+						if (!element.classList.contains("disabled")) continue;
+
+						element.classList.remove("disabled");
+					}
+
+					for (element of $(".paciente-nativo")) {
+						if (element.classList.contains("paciente-estrangeiro")) continue;
+						if (element.classList.contains("disabled")) continue;
+
+						element.classList.add("disabled");
+					}
+				}
+			}
+		</script>
+
+		<script>
 			const url = new URL(window.location.href);
 
-			if (url.searchParams.get("nome")) $("#nome").val(url.searchParams.get("nome").toUpperCase());
+			// if (url.searchParams.get("nome")) $("#nome").val(url.searchParams.get("nome").toUpperCase());
+
+			for (let select of $("select")) {
+				let id = select.id;
+
+				if (url.searchParams.get(id)) $(`#${id}`).val(url.searchParams.get(id));
+			}
 
 			for (let input of $(".form-input > input")) {
 				let id = input.id;
@@ -283,10 +322,13 @@
 					`${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getFullYear()).padStart(2, "0")}`
 				);
 			}
+
+			loadInputs();
 		</script>
 
 		<script>
 			$("input").on("input", (e) => (e.currentTarget.value = e.currentTarget.value.toUpperCase()));
+			$("#tipo-paciente").change(loadInputs);
 		</script>
 
 		<script>
@@ -315,9 +357,12 @@
 				const userUrl = new URL(window.location.href);
 				const savedURL = new URL(userUrl.origin + userUrl.pathname);
 
+				for (let select of $("select")) {
+					savedURL.searchParams.append(select.name, select.value);
+				}
+
 				for (let input of $("input")) {
 					if (input.type == "radio" && !input.checked) continue;
-					console.log(input.value);
 					savedURL.searchParams.append(input.name, input.value);
 				}
 
@@ -331,7 +376,6 @@
 				link.click();
 
 				URL.revokeObjectURL(link.href);
-				window.location.href = savedURL;
 			});
 		</script>
 	</body>

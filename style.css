@@ -156,6 +156,10 @@ img {
     background-color: #e30615d3
 }
 
+.disabled {
+    display: none;
+}
+
 @media print {
     body,
     page {
