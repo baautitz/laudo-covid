@@ -17,7 +17,7 @@ page {
     grid-template-rows: min-content auto max-content;
 
     width: 21cm;
-    height: 29.7cm;
+    min-height: 29.7cm;
 
     margin: 0 auto;
     margin-bottom: 0.5cm;
@@ -100,6 +100,15 @@ img {
 .form-input-radio {
     display: flex;
     align-items: center;
+    
+}
+
+.form-input-radio>* {
+    cursor: pointer;
+}
+
+.form-input-radio>input {
+    margin: 2px 3px 0 0;
 }
 
 .form-input {
@@ -165,7 +174,8 @@ img {
     page {
         margin: 0;
         box-shadow: none;
-        border-radius: 0;
+        border-radius: 0;    
+        height: 29.7cm;
     }
 
     #save {
