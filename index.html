@@ -28,38 +28,43 @@
 							<!-- <h2>DADOS DO PACIENTE</h2> -->
 							<h2><label for="tipo-paciente">DADOS DO PACIENTE</label></h2>
 							<select name="tipo-paciente" id="tipo-paciente" aria-labelledby="state">
-								<option value="nativo">Nativo</option>
+								<option value="brasileiro">Brasileiro</option>
 								<option value="estrangeiro">Estrangeiro</option>
 							</select>
 						</div>
 
 						<div class="input-wrapper">
-							<div class="form-input full-size paciente-nativo paciente-estrangeiro">
+							<div class="form-input full-size paciente-brasileiro paciente-estrangeiro">
 								<label for="nome">Nome do paciente:</label>
 								<input type="text" name="nome" id="nome" />
 							</div>
 
-							<div class="form-input paciente-nativo paciente-estrangeiro">
+							<div class="form-input paciente-brasileiro paciente-estrangeiro">
 								<label for="nascimento">Data de nascimento:</label>
 								<input type="text" name="nascimento" id="nascimento" class="data" />
 							</div>
 
-							<div class="form-input paciente-nativo">
+							<div class="form-input paciente-brasileiro">
 								<label for="cpf">CPF:</label>
 								<input type="text" name="cpf" id="cpf" />
 							</div>
-							<div class="form-input paciente-nativo">
+							<div class="form-input paciente-brasileiro">
 								<label for="rg">RG:</label>
 								<input type="text" name="rg" id="rg" />
 							</div>
 
-							<div class="form-input paciente-nativo paciente-estrangeiro">
+							<div class="form-input paciente-brasileiro paciente-estrangeiro">
 								<label for="telefone">Telefone:</label>
 								<input type="text" name="telefone" id="telefone" />
 							</div>
 							<div class="form-input paciente-estrangeiro">
 								<label for="documento">Documento:</label>
 								<input type="text" name="documento" id="documento" />
+							</div>
+
+							<div class="form-input paciente-estrangeiro">
+								<label for="passaporte">Passaporte:</label>
+								<input type="text" name="passaporte" id="passaporte" />
 							</div>
 						</div>
 					</div>
@@ -78,25 +83,25 @@
 								<input type="text" name="estado" id="estado" />
 							</div>
 
-							<div class="form-input full-size paciente-nativo">
+							<div class="form-input full-size paciente-brasileiro">
 								<label for="logradouro">Logradouro:</label>
 								<input type="text" name="logradouro" id="logradouro" />
 							</div>
-							<div class="form-input paciente-nativo">
+							<div class="form-input paciente-brasileiro">
 								<label for="numero-logradouro">Número:</label>
 								<input type="text" name="numero-logradouro" id="numero-logradouro" />
 							</div>
-							<div class="form-input paciente-nativo">
+							<div class="form-input paciente-brasileiro">
 								<label for="bairro">Bairro:</label>
 								<input type="text" name="bairro" id="bairro" />
 							</div>
 
-							<div class="form-input paciente-nativo paciente-estrangeiro">
+							<div class="form-input paciente-brasileiro paciente-estrangeiro">
 								<label for="cidade">Cidade:</label>
 								<input type="text" name="cidade" id="cidade" />
 							</div>
 
-							<div class="form-input paciente-nativo">
+							<div class="form-input paciente-brasileiro">
 								<label for="cep">CEP:</label>
 								<input type="text" name="cep" id="cep" />
 							</div>
@@ -263,15 +268,15 @@
 
 		<script>
 			function loadInputs() {
-				if ($("#tipo-paciente").val() == "nativo") {
-					for (element of $(".paciente-nativo")) {
+				if ($("#tipo-paciente").val() == "brasileiro") {
+					for (element of $(".paciente-brasileiro")) {
 						if (!element.classList.contains("disabled")) continue;
 
 						element.classList.remove("disabled");
 					}
 
 					for (element of $(".paciente-estrangeiro")) {
-						if (element.classList.contains("paciente-nativo")) continue;
+						if (element.classList.contains("paciente-brasileiro")) continue;
 						if (element.classList.contains("disabled")) continue;
 
 						element.classList.add("disabled");
@@ -283,7 +288,7 @@
 						element.classList.remove("disabled");
 					}
 
-					for (element of $(".paciente-nativo")) {
+					for (element of $(".paciente-brasileiro")) {
 						if (element.classList.contains("paciente-estrangeiro")) continue;
 						if (element.classList.contains("disabled")) continue;
 
@@ -363,6 +368,8 @@
 
 				for (let input of $("input")) {
 					if (input.type == "radio" && !input.checked) continue;
+					if (!input.value) continue;
+
 					savedURL.searchParams.append(input.name, input.value);
 				}
 
