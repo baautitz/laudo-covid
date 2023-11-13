@@ -1,188 +1,229 @@
 * {
-    box-sizing: border-box;
-    border: none;
-    outline: none;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
 
-    font-size: medium;
+	font-size: medium;
 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background: rgb(243, 243, 243);
+	background: rgb(243, 243, 243);
 }
 
 page {
-    display: grid;
-    grid-template-rows: min-content auto max-content;
+	display: grid;
+	grid-template-rows: min-content auto max-content;
 
-    width: 21cm;
-    min-height: 29.7cm;
+	width: 21cm;
+	min-height: 29.7cm;
 
-    margin: 0 auto;
-    margin-bottom: 0.5cm;
-    padding: 20px;
+	margin: 0 auto;
+	margin-bottom: 0.5cm;
+	padding: 20px;
 
-    background: white;
-    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.26);
-    border-radius: 20px;
+	background: white;
+	box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.26);
+	border-radius: 20px;
 }
 
 h2 {
-    text-align: center;
+	text-align: center;
 }
 
 p {
-    font-size: small;
-    margin: 5px;
-    text-align: justify;
+	font-size: small;
+	margin: 5px;
+	text-align: justify;
 }
 
-input[type=text] {
-    padding: 12px 5px;
-    border: black solid 1px;
-    border-radius: 5px;
-    height: 20px;
+input[type="text"] {
+	padding: 12px 5px;
+	border: black solid 1px;
+	border-radius: 5px;
+	height: 20px;
 }
 
 img {
-    width: 220px;
+	width: 220px;
 }
 
 ::placeholder {
-    color: black;
+	color: black;
 }
 
 #cabecalho {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 }
 
-#cabecalho>#farmacia {
-    display: flex;
-    flex-direction: column;
+#cabecalho > #farmacia {
+	display: flex;
+	flex-direction: column;
 }
 
-#cabecalho>#farmacia>span {
-    font-size: small;
+#cabecalho > #farmacia > span {
+	font-size: small;
 }
 
 #formulario {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .form-box {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .dados-paciente {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.dados-paciente>select{
-    border: black solid 1px;
-    border-radius: 5px;
-    margin-bottom: 13.280px;
+.dados-paciente > select {
+	border: black solid 1px;
+	border-radius: 5px;
+	margin-bottom: 13.28px;
 }
 
 .input-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 
-    column-gap: 10px;
-    row-gap: 5px;
+	column-gap: 10px;
+	row-gap: 5px;
 }
 
 .form-input-radio {
-    display: flex;
-    align-items: center;
-    
+	display: flex;
+	align-items: center;
 }
 
-.form-input-radio>* {
-    cursor: pointer;
+.form-input-radio > * {
+	cursor: pointer;
 }
 
-.form-input-radio>input {
-    margin: 2px 3px 0 0;
+.form-input-radio > input {
+	margin: 2px 3px 0 0;
 }
 
 .form-input {
-    display: flex;
+	display: flex;
 }
 
-.form-input>label {
-    width: 150px;
+.form-input > label {
+	width: 150px;
 }
 
-.form-input>input {
-    flex: auto;
+.form-input > input {
+	flex: auto;
 }
 
 .full-size {
-    grid-column: span 2;
+	grid-column: span 2;
 }
 
 #assinatura {
-    align-self: flex-end;
+	align-self: flex-end;
 
-    text-align: center;
+	text-align: center;
 }
 
-#assinatura>hr {
-    display: block;
+#assinatura > hr {
+	display: block;
 
-    height: 2px;
+	height: 2px;
 
-    background: black;
-    width: 60%;
+	background: black;
+	width: 60%;
 
-    border: none;
-    border-top: solid 1px black;
+	border: none;
+	border-top: solid 1px black;
 }
 
 #save {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
 }
 
 #save > button {
-    background-color: #E30613;
-    padding: 5px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: white;
-    border: #E30613 solid 2px;
+	background-color: #e30613;
+	padding: 5px 20px;
+	border-radius: 10px;
+	cursor: pointer;
+	color: white;
+	border: #e30613 solid 2px;
 }
 
 #save > button:hover {
-    background-color: #e30615d3
+	background-color: #e30615d3;
+}
+
+.loading-wrapper {
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(255, 255, 255, 0.849);
+}
+
+.loading-wrapper > p {
+	font-size: large;
+	font-weight: bold;
+}
+
+#loading {
+	border: 5px solid rgb(128, 128, 128); /* Light grey */
+	border-top: 5px solid #e30613; /* Blue */
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 1s linear infinite;
 }
 
 .disabled {
-    display: none;
+	display: none;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 @media print {
-    body,
-    page {
-        margin: 0;
-        box-shadow: none;
-        border-radius: 0;    
-        height: 29.7cm;
-    }
+	body,
+	page {
+		margin: 0;
+		box-shadow: none;
+		border-radius: 0;
+		height: 29.7cm;
+	}
 
-    #save {
-        display: none;
-    }
+	#save {
+		display: none;
+	}
 
-    .dados-paciente>select {
-        display: none;
-    }
+	.dados-paciente > select {
+		display: none;
+	}
+
+	.loading-wrapper {
+		display: none;
+	}
 }
