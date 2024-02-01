@@ -100,11 +100,6 @@ function loadParams() {
 }
 
 function loadInputsEvents() {
-  $("input").on(
-    "input",
-    (e) => (e.currentTarget.value = e.currentTarget.value.toUpperCase())
-  );
-
   $("#tipo-paciente").change(loadInputs);
 
   $("#cep").on("input", async (e) => {
