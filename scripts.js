@@ -1,3 +1,5 @@
+const siteTitle = $("#title")[0].innerHTML;
+
 function loadInputMasks() {
   const telefoneOptions = {
     onKeyPress: (telefone, e, field, options) => {
@@ -101,6 +103,12 @@ function loadParams() {
 
 function loadInputsEvents() {
   $("#tipo-paciente").change(loadInputs);
+
+  $("#nome").on("input", () => {
+    const nomeValue = $("#nome").val();
+    if (nomeValue.length == 0) $("#title")[0].innerHTML = siteTitle;
+    else $("#title")[0].innerHTML = nomeValue.toUpperCase();
+  });
 
   $("#cep").on("input", async (e) => {
     if (e.currentTarget.value.length == 9) {
