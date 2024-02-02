@@ -99,6 +99,9 @@ function loadParams() {
       ).padStart(2, "0")}/${String(date.getFullYear()).padStart(2, "0")}`
     );
   }
+
+  if ($("#nome").val() == 0) $("#title")[0].innerHTML = siteTitle;
+  else $("#title")[0].innerHTML = $("#nome").val().toUpperCase();
 }
 
 function loadInputsEvents() {
@@ -178,7 +181,9 @@ function saveButtonEvent(e) {
 
   link.href = URL.createObjectURL(file);
   link.download = $("#nome")[0].value
-    ? `${$("#nome")[0].value.replaceAll(" ", "_")}-${Date.now()}.html`
+    ? `${$("#nome")[0]
+        .value.toUpperCase()
+        .replaceAll(" ", "_")}-${Date.now()}.html`
     : `LAUDO-${Date.now()}.html`;
   link.click();
 
