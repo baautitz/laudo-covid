@@ -182,8 +182,8 @@ function saveButtonEvent(e) {
   link.href = URL.createObjectURL(file);
   link.download = $("#nome")[0].value
     ? `${$("#nome")[0]
-        .value.toUpperCase()
-        .replaceAll(" ", "_")}-${Date.now()}.html`
+      .value.toUpperCase()
+      .replaceAll(" ", "_")}-${Date.now()}.html`
     : `LAUDO-${Date.now()}.html`;
   link.click();
 
@@ -195,3 +195,7 @@ loadInputMasks();
 loadInputs();
 loadInputsEvents();
 $("#save-button").on("click", (e) => saveButtonEvent(e));
+
+window.onbeforeunload = function () {
+  return "Are you sure";
+};
