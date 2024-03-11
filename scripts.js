@@ -119,10 +119,7 @@ function loadInputsEvents() {
 
       try {
         const response = await fetch(
-          `https://brasilapi.com.br/api/cep/v2/${e.currentTarget.value.replace(
-            "-",
-            ""
-          )}`
+          `https://viacep.com.br/ws/${e.currentTarget.value}/json`
         );
 
         if (response.status != 200) {
@@ -134,10 +131,10 @@ function loadInputsEvents() {
         )
           return;
 
-        const { city, neighborhood, street, state } = await response.json();
-        $("#logradouro").val(street.toUpperCase());
-        $("#cidade").val(`${city} - ${state}`.toUpperCase());
-        $("#bairro").val(neighborhood.toUpperCase());
+        const { localidade, bairro, logradouro, uf } = await response.json();
+        $("#logradouro").val(logradouro.toUpperCase());
+        $("#cidade").val(`${localidade} - ${uf}`.toUpperCase());
+        $("#bairro").val(bairro.toUpperCase());
         $("#numero-logradouro").focus();
       } catch (e) {
         alert("Não foi possível consultar o CEP!");
