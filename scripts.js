@@ -83,6 +83,13 @@ function loadParams() {
       true
     );
 
+  if ($("#nome").val() == 0) $("#title")[0].innerHTML = siteTitle;
+  else $("#title")[0].innerHTML = $("#nome").val().toUpperCase();
+}
+
+function loadDefaultInputValues() {
+  const url = new URL(window.location.href);
+
   let date = new Date(Date.now());
   if (!url.searchParams.get("horario-realizado")) {
     $("#horario-realizado").val(
@@ -99,9 +106,6 @@ function loadParams() {
       ).padStart(2, "0")}/${String(date.getFullYear()).padStart(2, "0")}`
     );
   }
-
-  if ($("#nome").val() == 0) $("#title")[0].innerHTML = siteTitle;
-  else $("#title")[0].innerHTML = $("#nome").val().toUpperCase();
 }
 
 function loadInputsEvents() {
@@ -179,8 +183,8 @@ function saveButtonEvent(e) {
   link.href = URL.createObjectURL(file);
   link.download = $("#nome")[0].value
     ? `${$("#nome")[0]
-      .value.toUpperCase()
-      .replaceAll(" ", "_")}-${Date.now()}.html`
+        .value.toUpperCase()
+        .replaceAll(" ", "_")}-${Date.now()}.html`
     : `LAUDO-${Date.now()}.html`;
   link.click();
 
@@ -190,9 +194,10 @@ function saveButtonEvent(e) {
 loadParams();
 loadInputMasks();
 loadInputs();
+loadDefaultInputValues();
 loadInputsEvents();
 $("#save-button").on("click", (e) => saveButtonEvent(e));
 
 window.onbeforeunload = function () {
-  return "Are you sure";
+  return "Deseja realmente sair?";
 };
